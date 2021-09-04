@@ -8,10 +8,10 @@ var StateSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Location"
     }],
-    hotels: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Hotel"
-    }],
+    // properties: [{
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "Property"
+    // }],
     stateLandMarkimage:String
   
 });

@@ -1,31 +1,33 @@
 const router = require("express").Router();
 const e = require("express");
-const Hotel = require("../models/hotel");
+const Property = require("../models/property");
 const Location = require("../models/location");
 const State = require("../models/state");
 
-// const bcrypt = require("bcrypt");
 
-//REGISTER
 //add hotel to DB
-router.post("/addHotel", async (req, res) => {
+router.post("/addProperty", async (req, res) => {
   try {
  
-    const newHotel = new Hotel({
-      hotelName:req.body.hotelName, 
-      location:req.body.location, // location namre
-      state:req.body.state //state name
+    const newProperty ={
+      propertyName:req.body.propertyName, 
+      location:req.body.location, // location name
+      state:req.body.state, //state name
+      propertyType:req.body.propertyType
+    };
+
+
+    savedProperty = await Property.findOneAndUpdate({propertyName:req.body.propertyName},newProperty,{
+      new: true,
+      upsert:true
     });
-
-
-    savedHotel = await newHotel.save();
 
     const updatedLocation = await Location.findOneAndUpdate({locationName:req.body.location},{locationName:req.body.location},{
       new: true,
       upsert:true
     });
 
-    updatedLocation.hotels.addToSet(newHotel._id)
+    updatedLocation.properties.addToSet(savedProperty._id)
     updatedLocation.save(function(err,saved){
 
     })
@@ -36,21 +38,22 @@ router.post("/addHotel", async (req, res) => {
     });
 
     updatedState.locations.addToSet(updatedLocation._id)
-    updatedState.hotels.addToSet(savedHotel._id)
+    // updatedState.properties.addToSet(savedProperty._id)
     updatedState.save(function(err,saved){
 
     })
     // res.status(200).json(updatedState);
-    res.status(200).json(savedHotel);
+    res.status(200).json(savedProperty);
     // res.status(200).json(updatedLocation);
   }
    catch (err) {
+     console.log(err)
     res.status(500).json(err)
   }
 });
 
 // get all States from DB
-router.get("/getState" ,async(req,res)=>{
+router.get("/getStates" ,async(req,res)=>{
   try {
     let states = await State.find({}).populate('locations')
     res.status(200).json(states)
@@ -63,7 +66,7 @@ router.get("/getState" ,async(req,res)=>{
 //get all locations of selected state ;use state id
 router.get("/getLocations/:id" ,async(req,res)=>{
   try {
-    let locations = await State.findById({_id:req.params.id}).populate('locations');
+    let locations = await State.findById({_id:req.params.id}).populate('locations');//locations of selected state
 
     res.status(200).json(locations)
     
@@ -74,12 +77,21 @@ router.get("/getLocations/:id" ,async(req,res)=>{
 })
 
 //get all hotels from selected location
-router.get("/getHotels/:id" ,async(req,res)=>{
+router.get("/getProperties/:locationId/:propertyType" ,async(req,res)=>{
   try {
-    console.log(req.params.id)
-    let hotels = await Location.findById({_id:req.params.id}).populate('hotels')
-    console.log(hotels)
-    res.status(200).json(hotels)
+    let propertyType = req.params.propertyType
+    let properties = await Location.findById({_id:req.params.locationId}).populate('properties')
+    res.status(200).json(properties)
+    
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+})
+router.get("/getProperty/:propertyId" ,async(req,res)=>{
+  try {
+    let property = await Property.findById({_id:req.params.propertyId});
+    res.status(200).json(property)
     
   } catch (error) {
     console.log(error)
@@ -87,21 +99,6 @@ router.get("/getHotels/:id" ,async(req,res)=>{
   }
 })
 
-router.post("/getHotel", async (req, res) => {
-  try {
-    
-      let hotels = await (await State.findOne({stateName:req.body.stateName})).populate('hotels') ;
-      hotels.forEach(function(hotel){
-
-      })
-
-    
-    res.status(200).json(hotel);
-  } catch (err) {
-    console.log(err)
-    res.status(500).json(err)
-  }
-});
 
 
 module.exports = router;

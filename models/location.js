@@ -3,9 +3,9 @@ var mongoose = require("mongoose");
 var LocationSchema = new mongoose.Schema({
    
    locationName:String,
-   hotels: [{
+   properties: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Hotels"
+    ref: "Property"
     }],
     locationLandMarkimage:String,
     minimumCost:String
