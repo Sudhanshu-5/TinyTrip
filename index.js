@@ -9,7 +9,7 @@ const addData = require("./routes/data");
 dotenv.config();
 
 mongoose.connect(
-  process.env.MONGO_URL,
+  process.env.TinyTrip_URL,
   { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify:false },
   () => {
     console.log("Connected to MongoDB");
