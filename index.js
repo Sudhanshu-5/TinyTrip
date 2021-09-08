@@ -2,9 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
 const addData = require("./routes/data");
-
+const adminRouter = require("./routes/admin");
 
 dotenv.config();
 
@@ -19,10 +18,10 @@ mongoose.connect(
 //middleware
 app.use(express.json());
 
+// app.use(adminBro.options.rootPath, router)
 
 app.use(addData);
-
-
-app.listen(3000, () => {
+app.use('/admin',adminRouter);
+app.listen(3001, () => {
   console.log("Backend server is running!");
 });
