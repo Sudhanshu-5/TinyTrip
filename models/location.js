@@ -2,13 +2,18 @@ var mongoose = require("mongoose");
 
 var LocationSchema = new mongoose.Schema({
    
-   locationName:String,
+   locationName:{
+   
+           type: mongoose.Schema.Types.ObjectId,
+            ref: "LocationList"
+
+    
+   },
    properties: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Property"
-    }],
-    locationLandMarkimage:String,
-    minimumCost:String
+    }]
+ 
 });
 module.exports = mongoose.model("Location",LocationSchema);
     
