@@ -7,7 +7,6 @@ const State = require("../models/state");
 const mongoose = require('mongoose');
 const StateList = require("../models/stateList");
 const cityList = require("../models/locationList");
-const additionalInfo = require("../models/additionalInfo");
 const offerings = require("../models/offerings");
 AdminBro.registerAdapter(AdminBroMongoose)
 

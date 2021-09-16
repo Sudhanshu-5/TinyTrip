@@ -22,6 +22,6 @@ app.use(express.json());
 
 app.use(addData);
 app.use('/admin',adminRouter);
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("Backend server is running!");
 });

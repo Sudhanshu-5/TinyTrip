@@ -3,7 +3,6 @@ const e = require("express");
 const Property = require("../models/property");
 const Location = require("../models/location");
 const State = require("../models/state");
-const AdditionalInfo = require("../models/additionalInfo");
 const Offerings = require("../models/offerings");
 
 //add hotel to DB
@@ -120,7 +119,7 @@ router.get("/locations/:id" ,async(req,res)=>{
 //get info of particular property
 router.get("/getProperty/:propertyId" ,async(req,res)=>{
   try {
-    var populateQuery = [{path:'location'}, {path:'state'}, {path:'offerings'}, {path:'additionalInfo'}];
+    var populateQuery = [{path:'location'}, {path:'state'}, {path:'offerings'}];
 
     let property = await Property.findById({_id:req.params.propertyId}).populate(populateQuery);
     res.send(property)
