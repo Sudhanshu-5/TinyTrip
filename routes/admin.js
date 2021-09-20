@@ -13,14 +13,16 @@ const StateList = require("../models/stateList");
 const cityList = require("../models/locationList");
 const offerings = require("../models/offerings");
 const UploadedFile = require("../models/uploadedFile");
-const fs = require('fs');
 const User = require("../models/user");
 const bcrypt = require('bcrypt')
-const path = require('path');
 const { Console } = require("console");
 
 
 
+const {
+  after: uploadAfterHook,
+  before: uploadBeforeHook,
+} = require('../actions/upload-image.hook');
 
 
 // // const adminBro = new AdminBro({
@@ -101,11 +103,11 @@ const adminBro = new AdminBro({
         provider: { local: { bucket: 'assests'}},
         properties: {
           key: 'UploadedFile.path',
-          // bucket: 'UploadedFile.folder',
-          // mimeType: 'UploadedFile.type',
-          // size: 'UploadedFile.size',
-          // filename: 'UploadedFile.filename',
-          // file: 'uploadFile', 
+          bucket: 'UploadedFile.folder',
+          mimeType: 'UploadedFile.type',
+          size: 'UploadedFile.size',
+          filename: 'UploadedFile.filename',
+          file: 'uploadFile', 
            uploadImage: {
             components: {
           edit: AdminBro.bundle('../components/upload-image.edit.tsx'),
@@ -113,70 +115,28 @@ const adminBro = new AdminBro({
       },
     },
         },
-        actions:{
+        actions: {
           new: {
             after: async (response, request, context) => {
-              const { record, uploadImage } = context;
-              console.log("asdnjuassdjassjdhadasdnjasdamdslkpsdasdfnpa9sdu")
-                if (record.isValid() && uploadImage) {
-             
-                  const filePath = path.join('assests', record.id().toString(), uploadImage.name);
-                  await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
-
-                  await fs.promises.rename(uploadImage.path, filePath);
-
-                  await record.update({ profilePhotoLocation: `/${filePath}` });
-                }
-                return response;
+              
+              return uploadAfterHook(modifiedResponse, request, context);
             },
             before: async (request, context) => {
-              if (request.method === 'post') {
-                const { uploadImage, ...otherParams } = request.payload;
-            
-                // eslint-disable-next-line no-param-reassign
-                context.uploadImage = uploadImage;
-            
-                return {
-                  ...request,
-                  payload: otherParams,
-                };
-              }
-              return request;
+              return uploadBeforeHook(modifiedRequest, context);
             },
           },
           edit: {
             after: async (response, request, context) => {
-              const { record, uploadImage } = context;
-
-                if (record.isValid() && uploadImage) {
-                  const filePath = path.join('assests', record.id().toString(), uploadImage.name);
-                  await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
-
-                  await fs.promises.rename(uploadImage.path, filePath);
-
-                  await record.update({ profilePhotoLocation: `/${filePath}` });
-                }
-                return response;
+              return uploadAfterHook(modifiedResponse, request, context);
             },
             before: async (request, context) => {
-              if (request.method === 'post') {
-                const { uploadImage, ...otherParams } = request.payload;
-            
-                // eslint-disable-next-line no-param-reassign
-                context.uploadImage = uploadImage;
-            
-                return {
-                  ...request,
-                  payload: otherParams,
-                };
-              }
-              return request;
+              return uploadBeforeHook(modifiedRequest, context);
             },
           },
           show: {
             isVisible: false,
           },
-        }
+        },
       })
     ]
   
