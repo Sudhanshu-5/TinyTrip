@@ -1,0 +1,90 @@
+.accordion_2 .card .card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #ededed;
+    padding: 20px;
+}
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+#inc{
+    color:#000;
+}
+
+.accordion_2 .card-body {
+    padding-bottom: 0;
+}
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.accordion_2 .card-header h5 {
+    font-size: 16px;
+    font-size: 1rem;
+}
+.mb-0, .my-0 {
+    margin-bottom: 0!important;
+}
+
+.accordion_2 .card-header h5 a {
+    border: 0;
+    display: block;
+    color: #999;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.fa-plus {
+    font-size: 1.5rem;
+    float: right;
+    color: #fc5b62;
+}
+
+.fa-minus {
+    font-size: 1.5rem;
+    float: right;
+    color: #fc5b62;
+}
+
+.fa-eye{
+    font-size: 1.2rem;
+}
+
+.accordion_2 .card-body {
+    padding-bottom: 0;
+}
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.package_det_d_Exclusions {
+    padding: 2%;
+    width:100%;
+    margin: 2% 0 0 0;
+    background-color: rgb(245, 245, 245);
+    float: left;
+}
+
+.package_det_d_Exclusions ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.package_det_d_Exclusions ul li {
+    margin: 0 15px 15px 1px;
+    list-style-type: none;
+    font-size: 14px !important;
+    flex: none !important;
+    width: 100%;
+    text-align: left!Important;
+}
+
