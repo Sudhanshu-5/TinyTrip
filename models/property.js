@@ -27,7 +27,8 @@ const PropertySchema = new mongoose.Schema({
    //       ref: "AdditionalInfo"
    //       }, 
    propertyImage:[{
-         type:String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "UploadedFile"
         }],
     
    location:{
