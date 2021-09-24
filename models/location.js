@@ -12,7 +12,8 @@ var LocationSchema = new mongoose.Schema({
     properties: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Property"
-    }]
+    }],
+    isPopular:Boolean
     
 });
 module.exports = mongoose.model("Location",LocationSchema);

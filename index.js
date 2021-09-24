@@ -28,8 +28,8 @@ mongoose.connect(
 app.use(express.json());
 app.use(cookieParser())
 
-app.use('/assests', express.static('assests'));
-
+// app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static('uploads'));
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
   secret: "anything",

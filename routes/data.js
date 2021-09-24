@@ -90,6 +90,67 @@ const Offerings = require("../models/offerings");
 
 
 // getall properties at homepage
+router.get("/",async(req,res)=>{
+  try {
+    //get all locations and properties
+
+    let  allLocations = await Location.find({}).populate('locationName');
+    let  allProperties = await Property.find({});
+    let popularLocations=[];
+    let popularProperties=[];
+
+    //add popular locations
+    allLocations.forEach(function(location){
+      if(location.isPopular){
+        popularLocations.push(location)
+      }
+
+    })
+
+    // res.send(popularLocations)
+    //add popular properties
+    allProperties.forEach(function(property){
+      if(property.isPopular){
+        popularProperties.push(location)
+      }
+
+    })
+    
+    // res.send(popularProperties)
+    //request queries
+    let locationsId = req.query.locations;
+    let sortType = req.query.sort;
+    let propertyType = req.query.propertyType;
+    if(locationsId){
+      let locationArray = locationsId.split(',')
+      let flag='0';
+      if(sortType==="desc"){
+        flag='1'
+      }
+      // let locations = await Location.find({_id : {$in: locationArray}}).populate('properties');
+      let properties =await Property.find({location : {$in: locationArray}},{propertyType:propertyType}).sort([['minimum_Price', -1]]).populate('location')
+      // console.log(properties)
+  
+      // if(flag==='1'){ //desc
+      //   locations.sort((a, b) => (a.locationName.locatioName < b.locationName.locatioName ) ? 1 : -1)
+      //   properties.minimum_Price.sort().reverse()
+      // }
+      // else
+      // {
+      //   // locations.sort((a, b) => (a.locationName.locatioName > b.locationName.locatioName ) ? 1 : -1)
+      //   properties.minimum_Price.sort()
+      // }
+          
+      console.log(properties) 
+    }
+
+   
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+})
 router.get("/featuredProperties" ,async(req,res)=>{
   try {
     var populateQuery = [{path:'location'}, {path:'state'},{path:'additionalInfo'},{path:'offerings'}];

@@ -17,6 +17,7 @@ const PropertySchema = new mongoose.Schema({
        type:String
    }],//By air,car,train,etc. 
    thingsToDo:String,
+   isPopular:Boolean,
    offerings:[{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Offerings"

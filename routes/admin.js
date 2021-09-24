@@ -10,20 +10,18 @@ const Property = require("../models/property");
 const Location = require("../models/location");
 const State = require("../models/state");
 const StateList = require("../models/stateList");
-const cityList = require("../models/locationList");
-const offerings = require("../models/offerings");
+const LocationList = require("../models/locationList");
+const Offerings = require("../models/offerings");
 const UploadedFile = require("../models/uploadedFile");
 const User = require("../models/user");
 const bcrypt = require('bcrypt')
 const { Console } = require("console");
 
 
-
 const {
   after: uploadAfterHook,
   before: uploadBeforeHook,
 } = require('../actions/upload-image.hook');
-
 
 // // const adminBro = new AdminBro({
 // //   databases: [mongoose],
@@ -70,6 +68,9 @@ const adminBro = new AdminBro({
         encryptedPassword: {
           isVisible: false,
         },
+        _id:{
+          isVisible:false,
+        },
         password: {
           type: 'string',
           isVisible: {
@@ -90,58 +91,138 @@ const adminBro = new AdminBro({
             return request
           },
         }
-        // edit: { isAccessible: canModifyUsers },
-        // delete: { isAccessible: canModifyUsers },
-        // new: { isAccessible: canModifyUsers },
+        
       },
    
     }
   },{
   resource:UploadedFile,
-    features: [
-      uploadFeature({
-        provider: { local: { bucket: 'assests'}},
-        properties: {
-          key: 'UploadedFile.path',
-          bucket: 'UploadedFile.folder',
-          mimeType: 'UploadedFile.type',
-          size: 'UploadedFile.size',
-          filename: 'UploadedFile.filename',
-          file: 'uploadFile', 
-           uploadImage: {
-            components: {
-          edit: AdminBro.bundle('../components/upload-image.edit.tsx'),
-          list: AdminBro.bundle('../components/upload-image.list.tsx'),
+  //     features: [
+  //       uploadFeature({
+  //         provider: { local: { bucket: 'uploads'}},
+  //         properties: {
+  //           key: 'UploadedFile.path',
+  //           bucket: 'UploadedFile.folder',
+  //           mimeType: 'UploadedFile.type',
+  //           size: 'UploadedFile.size',
+  //           filename: 'UploadedFile.filename',
+  //           file: 'uploadFile', 
+             
+  //         }, uploadImage: {
+  //           components: {
+  //         edit: AdminBro.bundle('../components/upload-image.edit.tsx'),
+  //         list: AdminBro.bundle('../components/upload-image.list.tsx'),
+  //     },
+  //   }
+  // })
+  //     ],
+    options:{
+      properties: {
+        
+        profilePhotoLocation: {
+          isVisible: false,
+        },
+        uploadImage: {
+          components: {
+            edit: AdminBro.bundle('../components/upload-image.edit.tsx'),
+            list: AdminBro.bundle('../components/upload-image.list.tsx'),
+          },
+        },
+      },
+      actions: {
+        new: {
+          after: async (response, request, context) => {
+            
+            return uploadAfterHook(response, request, context);
+          },
+          before: async (request, context) => {
+            return uploadBeforeHook(request, context);
+          },
+        },
+        edit: {
+          after: async (response, request, context) => {
+            return uploadAfterHook(response, request, context);
+          },
+          before: async (request, context) => {
+            return uploadBeforeHook(request, context);
+          },
+        },
+        show: {
+          isVisible: false,
+        },
       },
     },
-        },
-        actions: {
-          new: {
-            after: async (response, request, context) => {
-              
-              return uploadAfterHook(modifiedResponse, request, context);
-            },
-            before: async (request, context) => {
-              return uploadBeforeHook(modifiedRequest, context);
-            },
-          },
-          edit: {
-            after: async (response, request, context) => {
-              return uploadAfterHook(modifiedResponse, request, context);
-            },
-            before: async (request, context) => {
-              return uploadBeforeHook(modifiedRequest, context);
-            },
-          },
-          show: {
-            isVisible: false,
-          },
-        },
-      })
-    ]
   
+},{
+resource:Location,
+options:{
+  properties:{
+    _id:{
+      isVisible:false
+    }
+  }
 }
+},
+{
+  resource:LocationList,
+  options:{
+    properties:{
+      _id:{
+        isVisible:false
+      }
+    }
+  }
+  },
+  {
+    resource:State,
+    options:{
+      properties:{
+        _id:{
+          isVisible:false
+        }
+      }
+    }
+    },
+    {
+      resource:StateList,
+      options:{
+        properties:{
+          _id:{
+            isVisible:false
+          }
+        }
+      }
+      },
+      {
+        resource:Property,
+        options:{
+          properties:{
+            _id:{
+              isVisible:false
+            }
+          }
+        }
+        },
+        {
+          resource:Offerings,
+          options:{
+            properties:{
+              _id:{
+                isVisible:false
+              }
+            }
+          }
+          },
 ],
+dashboard: {
+  handler: async () => {
+    return { some: 'output/image' }
+  },
+  component: AdminBro.bundle('../components/my-dashboard-component')
+},
+branding: {
+  companyName: 'Tiny Travels',
+},
   rootPath: '/admin',
 })
 
