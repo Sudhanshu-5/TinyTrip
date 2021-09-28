@@ -8,7 +8,7 @@ const after = async (response, request, context) => {
   const { record, uploadImage } = context;
 
   if (record.isValid() && uploadImage) {
-    const filePath = path.join('uploads', record.id().toString(), uploadImage.name);
+    const filePath = path.join('uploads', uploadImage.name);
     await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
 
     await fs.promises.rename(uploadImage.path, filePath);

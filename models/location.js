@@ -3,7 +3,11 @@ var mongoose = require("mongoose");
 var LocationSchema = new mongoose.Schema({
    
   
-    location_Heading_Img:String, //URL for the main header image
+    
+ locationImage:[{
+    type: mongoose.Schema.Types.ObjectId,
+         ref: "UploadedFile"
+    }], 
     location_Heading_Text:String,
     locationName:{
     type: mongoose.Schema.Types.ObjectId,

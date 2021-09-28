@@ -120,7 +120,10 @@ const adminBro = new AdminBro({
       properties: {
         
         profilePhotoLocation: {
-          isVisible: false,
+          isVisible: true,
+        },
+        _id:{
+          isVisible:false
         },
         uploadImage: {
           components: {
@@ -153,16 +156,16 @@ const adminBro = new AdminBro({
       },
     },
   
-},{
-resource:Location,
-options:{
-  properties:{
-    _id:{
-      isVisible:false
+}, {
+  resource:Location,
+  options:{
+    properties:{
+      _id:{
+        isVisible:false
+      }
     }
   }
-}
-},
+  },
 {
   resource:LocationList,
   options:{

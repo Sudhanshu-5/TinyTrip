@@ -90,7 +90,7 @@ const Offerings = require("../models/offerings");
 
 
 // getall properties at homepage
-router.get("/",async(req,res)=>{
+router.get("/search",async(req,res)=>{
   try {
     //get all locations and properties
 
@@ -128,7 +128,7 @@ router.get("/",async(req,res)=>{
         flag='1'
       }
       // let locations = await Location.find({_id : {$in: locationArray}}).populate('properties');
-      let properties =await Property.find({location : {$in: locationArray}},{propertyType:propertyType}).sort([['minimum_Price', -1]]).populate('location')
+      let properties =await Property.find({location : {$in: locationArray} , propertyType:propertyType}).sort([['minimum_Price', -1]]).populate('location').exec()
       // console.log(properties)
   
       // if(flag==='1'){ //desc

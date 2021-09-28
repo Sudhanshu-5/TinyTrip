@@ -10,7 +10,10 @@ const PropertySchema = new mongoose.Schema({
    },
    property_Address :String,
    minimum_Price : String, // Lowest price amongst the above offernings.
-   prperty_Heading_Img:String, //URL for the main header image
+   prperty_Heading_Img:[{
+      type: mongoose.Schema.Types.ObjectId,
+           ref: "UploadedFile"
+      }], //URL for the main header image
    property_Heading_Text:String,
    highlights:String,
    wayToTransport:[{
@@ -29,8 +32,8 @@ const PropertySchema = new mongoose.Schema({
    //       }, 
    propertyImage:[{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "UploadedFile"
-        }],
+           ref: "UploadedFile"
+      }], 
     
    location:{
       type: mongoose.Schema.Types.ObjectId,
