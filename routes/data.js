@@ -121,14 +121,23 @@ router.get("/search",async(req,res)=>{
     let locationsId = req.query.locations;
     let sortType = req.query.sort;
     let propertyType = req.query.propertyType;
+    let properties;
     if(locationsId){
       let locationArray = locationsId.split(',')
       let flag='0';
       if(sortType==="desc"){
         flag='1'
       }
+      console.log(locationArray)
       // let locations = await Location.find({_id : {$in: locationArray}}).populate('properties');
-      let properties =await Property.find({location : {$in: locationArray} , propertyType:propertyType}).sort([['minimum_Price', -1]]).populate('location').exec()
+      if(propertyType==='both'){
+         properties =await Property.find({location : {$in: locationArray}}).sort([['minimum_Price', -1]]).populate('location','propertyImage')
+
+      }
+      else{
+        properties =await Property.find({location : {$in: locationArray} , propertyType:propertyType}).sort([['minimum_Price', -1]]).populate('location','propertyImage')
+
+      }
       // console.log(properties)
   
       // if(flag==='1'){ //desc
@@ -140,8 +149,8 @@ router.get("/search",async(req,res)=>{
       //   // locations.sort((a, b) => (a.locationName.locatioName > b.locationName.locatioName ) ? 1 : -1)
       //   properties.minimum_Price.sort()
       // }
-          
-      console.log(properties) 
+      res.send(properties)    
+      // console.log(properties) 
     }
 
    
