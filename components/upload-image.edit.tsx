@@ -7,10 +7,12 @@ const Edit: React.FC<BasePropertyProps> = (props) => {
 
   const handleDropZoneChange: DropZoneProps['onChange'] = (files) => {
     onChange(property.name, files[0])
+    onChange('profilePhotoLocation', files[0]?.name)
   }
-
+  // console.log("aaaaaaaaaaaaaa"+JSON.stringify(property))
   const uploadedPhoto = record.params.profilePhotoLocation
   const photoToUpload = record.params[property.name]
+  // console.log("vvvvvvvvvvvvvvvvv"+photoToUpload)
 
   return (
     <Box marginBottom="xxl">

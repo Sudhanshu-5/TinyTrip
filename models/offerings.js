@@ -7,9 +7,10 @@ var OfferingsSchema = new mongoose.Schema({
     },
   
     packageDescription:String,
-    packageImgs :[{
-        type:String
-       }],
+    packageImgs:[{
+        type: mongoose.Schema.Types.ObjectId,
+             ref: "UploadedFile"
+        }],
     package_Price:String,
 });
 module.exports = mongoose.model("Offerings",OfferingsSchema);

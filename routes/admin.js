@@ -218,14 +218,19 @@ const adminBro = new AdminBro({
           },
 ],
 dashboard: {
-  handler: async () => {
-    return { some: 'output/image' }
-  },
+  // handler: async () => {
+  //   return { some: 'output/image' }
+  // },
   component: AdminBro.bundle('../components/my-dashboard-component')
 },
 branding: {
   companyName: 'Tiny Travels',
+  softwareBrothers:false,
+  logo:'../uploads/logo.png'
 },
+  assets: {
+    styles: ['/css/login-admin.css'], 
+  },
   rootPath: '/admin',
 })
 
