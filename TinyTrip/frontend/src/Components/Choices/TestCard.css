@@ -1,0 +1,93 @@
+.testcard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: min-content;
+  max-height: fit-content;
+  text-align: center;
+  display: flex;
+  font-family: arial;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+.imgContainer {
+  width: 750px;
+  min-height: 500px;
+  margin-left: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #023e8a;
+  width: fit-content;
+}
+
+.cta div {
+  margin-right: 0;
+  vertical-align: middle;
+  align-self: center;
+  font-size: 24px;
+  padding: 5px 10px;
+  color: white;
+  overflow: hidden;
+}
+
+.cta-btn {
+  padding: 5px 10px;
+  color: white;
+  font-size: 24px !important;
+  background-color: #03045e;
+  text-transform: none;
+  border: none;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.cta-btn:hover {
+  border: 1px solid #03045e;
+  color: #0077b6;
+  background-color: white;
+}
+
+.imgContainer > img {
+  height: 100%;
+  flex-basis: 50%;
+}
+
+.property-name {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: black;
+}
+
+.address {
+  font-size: 15px;
+  color: black;
+}
+
+.offerings {
+  font-size: 12px;
+  color: #0077b6;
+  margin-top: 15px;
+}
+
+.distance {
+  font-size: 12px;
+  margin-top: 15px;
+  color: #03045e;
+}

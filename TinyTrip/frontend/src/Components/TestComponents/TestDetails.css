@@ -1,0 +1,8 @@
+.property-details {
+  border-right: 1px solid #ccc;
+  padding-right: 50px;
+}
+
+.property-details:last-child {
+  border: none;
+}

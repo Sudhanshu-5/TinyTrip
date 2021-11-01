@@ -1,0 +1,86 @@
+.filterNav {
+  box-shadow: 0 4px 8px 0 rgba(161, 141, 141, 0.2);
+  display: flex;
+  background: transparent;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-top: 1px solid #023e8a;
+  border-bottom: 1px solid #023e8a;
+  border-radius: 5px;
+}
+
+.drop-btn {
+  font-size: 15px !important;
+  display: flex !important;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+#navbar {
+  background-color: transparent !important;
+}
+
+.borderFix {
+  min-width: 2px;
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-left: 1px solid #023e8a;
+  border-bottom-left-radius: 5px;
+  box-sizing: border-box;
+}
+
+.location-btn i {
+  margin-right: 5px;
+}
+.location-btn:hover {
+  color: #023e8a !important;
+}
+.location-btn.active {
+  color: #023e8a !important;
+  background-color: transparent !important;
+}
+.location-btn:focus {
+  background-color: transparent !important;
+}
+
+#border-fix {
+  /* background-color: white; */
+  width: 0;
+}
+#navbarDropdown:hover {
+  color: #023e8a !important;
+}
+#navbarDropdown2:hover {
+  color: #023e8a !important;
+}
+#navbarDropdown3:hover {
+  color: #023e8a !important;
+}
+
+#dropdown-menu {
+  width: max-content;
+  max-height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#ctaFind {
+  margin-left: auto !important;
+  transition: all 0.2s !important;
+  text-transform: none !important;
+  font-size: 20px !important;
+  background-color: #023e8a !important;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: none;
+  border-bottom: none;
+}
+#ctaFind:focus {
+  background-color: #023e8a !important;
+  color: #fff;
+}
+
+#ctaFind:hover {
+  background-color: white !important;
+  color: #023e8a;
+}

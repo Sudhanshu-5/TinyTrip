@@ -1,0 +1,76 @@
+#For Homepage related data.
+*********************************************************************************
+1.Endpoint : GET /featuredProperties
+  data : [{Prop1},{Prop2}];
+    Property :{
+    id : _id, 
+    imgs:[],  //Array of urls for images
+    Hotel_Name :"",
+    Distance_From:"",
+    Hotel_Address :"",
+    Offerings:["", "",], //Array of offers like 2/3 Nights,etc
+    Minimum_Price : Number, // Lowest price amongst the above offernings.
+  };
+/*******************************************************************************/
+
+2.Endpoint : GET /carouselImgs
+  data:["",""]; //Array of urls for images  
+/*******************************************************************************/
+
+3.Enpoint : 
+/*******************************************************************************/
+
+#######################################################################################################################################################################
+#For Location_Page (Having hotels and villas for a particular location) related data.
+************************************************************************************
+1.Enpoint : GET /locations/:locationId
+  data:[
+    Location_Heading_Img:"", //URL for the main header image
+    Location_Heading_Text:"",
+    Properties :[{...},{...}],
+  ];
+  Propeties :{
+    id : _id,
+    imgs:[],  //Array of urls for images
+    Hotel_Name :"",
+    Hotel_Address :"",
+    Offerings:["", "",], //Array of offers like 2/3 Nights,etc
+    Minimum_Price : Number, // Lowest price amongst the above offerings.
+  };
+/*******************************************************************************/
+
+2.Endpoint : 
+/*******************************************************************************/
+
+#######################################################################################################################################################################
+#For Property_Description_Page related data.
+************************************************************************************
+1.Endpoint : GET /property/:propId
+  Data :{
+    id : _id,
+    imgs:[],  //Array of urls for images
+    Header_Img :"", //First image url of imgs array
+    Header_Text:"",
+    Hotel_Name :"",
+    Hotel_Address :"",
+    Offerings:[{...}, {...},], //Array of offering objects
+    Additional_Info:{}, //For the hotel specific details
+    Minimum_Price : Number, // Lowest price amongst the above offernings.
+  };
+  Offering:{
+    Package_Id :_id,
+    Type_of_Package:ENUMERATION.PACKAGE_NAME,
+    Package_Description:"",
+    Package_Imgs :["",""],
+    Package_Price:Number,
+  };
+  Additional_Info:{
+    highlights:"",
+    How_To_Get_Here:["","",""], //By air,car,train,etc.
+  };
+/*******************************************************************************/
+
+2.Enpoint : 
+/*******************************************************************************/
+  
+  

@@ -1,0 +1,60 @@
+.gallery {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.gallery__item {
+  position: relative;
+}
+
+.gallery__img {
+  width: 640px;
+  height: 400px;
+  object-fit: cover;
+  filter: brightness(60%);
+  border-radius: 5px;
+}
+
+.overlay-info {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  color: aliceblue;
+  z-index: 1;
+  line-height: 1;
+}
+
+.room-name {
+  font-size: 32px;
+}
+
+.overlay-cta {
+  margin-left: 280px;
+}
+
+.overlay-cta button {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  right: 0px;
+  padding: 5px 10px;
+  color: white;
+  font-size: 24px !important;
+  background-color: #023e8a;
+  border: 1px solid transparent;
+  transition: all 0.4s;
+  border-top-right-radius: 5px;
+}
+
+.overlay-cta button:hover {
+  border: 1px solid #023e8a;
+  color: #0077b6;
+  background-color: white;
+}
+.box_detail .price {
+  /* padding: 0 !important; */
+}
+
+.item_blank {
+}

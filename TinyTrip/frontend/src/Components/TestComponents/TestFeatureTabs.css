@@ -1,0 +1,62 @@
+.tabFeature {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* Style the buttons that are used to open the tabFeature content */
+.tabFeature button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 8px !important;
+  font-size: 20px !important;
+  transition: 0.3s;
+  flex: 1;
+}
+
+/* Change background color of buttons on hover */
+.tabFeature button:hover {
+  background-color: #023e8a;
+  color: white;
+}
+
+/* Create an active/current tabFeaturelink class */
+.tabFeature button.active {
+  color: white;
+  background-color: #023e8a;
+}
+
+/* Style the tab content */
+.tabcontentFeature {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  color: black;
+}
+
+.tabcontentFeature.active {
+  display: block;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.tabcontentFeature {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
